@@ -16,18 +16,28 @@ const INITIAL_STATE: MapState = {
 
 interface Props {
     children: JSX.Element | JSX.Element[],
-};
+}
 
 export const MapProvider = ({ children }: Props) => {
 
-  const [state, dispatch] = useReducer(mapReducer, INITIAL_STATE );
+    const [state, dispatch] = useReducer(mapReducer, INITIAL_STATE );
 
+    const setMap = ( map: Map) => {
 
-  return (
-    <MapContext.Provider value={{
-        ...state,
-    }}>
-        { children }
-    </MapContext.Provider>
-  )
+        dispatch({
+            type: 'setMap',
+            payload: map,
+        });
+    }
+
+    return (
+        <MapContext.Provider value={{
+            ...state,
+
+            // Methods
+            setMap,
+        }}>
+            { children }
+        </MapContext.Provider>
+    )
 }
