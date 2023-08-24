@@ -21,14 +21,14 @@ export const placesReducer = ( state: PlacesState, action: PlacesAction ):Places
             return {
                 ...state,
                 isLoadingPlaces: true,
-                Places: [],
+                places: [],
             }
         
         case 'setPlaces':
             return {
                 ...state,
                 isLoadingPlaces: false,
-                Places: action.payload,
+                places: action.payload,
             }
 
         default:
